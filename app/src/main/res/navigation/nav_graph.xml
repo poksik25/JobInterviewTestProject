@@ -9,5 +9,18 @@
         android:id="@+id/giphyListFragment"
         android:name="com.poklad.jobinterviewtestproject.presentation.ui.screens.giphy_list.GiphyListFragment"
         android:label="GiphyListFragment"
-        tools:layout="@layout/fragment_giphy_list" />
+        tools:layout="@layout/fragment_giphy_list">
+        <action
+            android:id="@+id/action_giphyListFragment_to_singleGiphyFragment"
+            app:destination="@id/singleGiphyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleGiphyFragment"
+        android:name="com.poklad.jobinterviewtestproject.presentation.ui.screens.single_giphy.SingleGiphyFragment"
+        android:label="SingleGiphyFragment"
+        tools:layout="@layout/fragment_single_giphy" />
 </navigation>

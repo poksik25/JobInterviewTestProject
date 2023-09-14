@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.poklad.jobinterviewtestproject.GiphyApp
+import com.poklad.jobinterviewtestproject.R
 import com.poklad.jobinterviewtestproject.data.model.GifItem
 import com.poklad.jobinterviewtestproject.databinding.FragmentGiphyListBinding
 import com.poklad.jobinterviewtestproject.extensions.invisible
@@ -18,6 +20,7 @@ import com.poklad.jobinterviewtestproject.extensions.toast
 import com.poklad.jobinterviewtestproject.extensions.visible
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
+import com.poklad.jobinterviewtestproject.presentation.ui.screens.single_giphy.SingleGiphyFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -83,7 +86,10 @@ class GiphyListFragment : BaseFragment<FragmentGiphyListBinding, BaseViewModel>(
             orientation = LinearLayoutManager.VERTICAL,
             columns = 2
         ) { giphy ->
-            requireContext().toast(giphy.id)
+            navigateToFragment(
+                R.id.action_giphyListFragment_to_singleGiphyFragment,
+                bundleOf(SingleGiphyFragment.ARG_GIPHY to giphy)
+            )
         }
     }
 }

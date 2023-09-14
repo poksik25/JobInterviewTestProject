@@ -13,7 +13,4 @@ class GiphyRepositoryImp @Inject constructor(
      override suspend fun getTrendingGifs(): List<GifItem> {
         return giphyApi.getGifsList().data
     }
-/*    override suspend fun getTrendingGifs(): GiphyResponse {
-        return giphyApi.getGifsList()
-    }*/
 }

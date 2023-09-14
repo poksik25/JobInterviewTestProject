@@ -64,6 +64,10 @@ dependencies {
     //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
+    //Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+
     implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

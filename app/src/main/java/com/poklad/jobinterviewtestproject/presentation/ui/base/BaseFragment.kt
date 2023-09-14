@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.viewbinding.ViewBinding
+import com.poklad.jobinterviewtestproject.utils.GridItemDecorator
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
 
@@ -39,6 +41,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
         )
     }
 
+    //TODO it is useless??
     protected fun <T> setUpRecyclerView(
         adapter: BaseAdapter<T>,
         recyclerView: RecyclerView,
@@ -52,6 +55,8 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
             } else {
                 LinearLayoutManager(requireContext(), orientation, false)
             }
+            val itemDecorator = GridItemDecorator(space = 16)//todo надо это или нет?
+            recyclerView.addItemDecoration(itemDecorator)
             this.adapter = adapter
         }
         adapter.setOnclickListener { item ->

@@ -1,16 +1,16 @@
 package com.poklad.jobinterviewtestproject.extensions
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import timber.log.Timber
 
 fun Any.tag(): String {
     return this::class.simpleName!!
 }
 
 fun Any.log(msg: String) {
-    Log.d("TAG: ${tag()}", msg)
+    Timber.d("TAG: ${tag()}", msg)
 }
 
 fun Context.toast(message: String) {
