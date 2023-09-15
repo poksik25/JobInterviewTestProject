@@ -1,16 +1,16 @@
 package com.poklad.jobinterviewtestproject.di.modules
 
+import com.poklad.jobinterviewtestproject.di.annotations.ApplicationScope
 import com.poklad.jobinterviewtestproject.utils.CoroutineDispatchersProvider
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Singleton
 
 @Module
 object DispatcherModule {
 
-    @Singleton
+    @ApplicationScope
     @Provides
     fun provideDispatchersModule(): CoroutineDispatchersProvider =
         object : CoroutineDispatchersProvider {

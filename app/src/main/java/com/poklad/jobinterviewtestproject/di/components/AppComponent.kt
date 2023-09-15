@@ -1,6 +1,7 @@
 package com.poklad.jobinterviewtestproject.di.components
 
 import android.content.Context
+import com.poklad.jobinterviewtestproject.di.annotations.ApplicationScope
 import com.poklad.jobinterviewtestproject.di.modules.DispatcherModule
 import com.poklad.jobinterviewtestproject.di.modules.NetworkModule
 import com.poklad.jobinterviewtestproject.di.modules.RepositoryModule
@@ -13,7 +14,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Singleton
+@ApplicationScope
 @Component(
     modules = [
         DispatcherModule::class,

@@ -5,13 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.poklad.jobinterviewtestproject.GiphyApp
+import com.poklad.jobinterviewtestproject.R
 import com.poklad.jobinterviewtestproject.databinding.FragmentSingleGiphyBinding
 import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SingleGiphyFragment : BaseFragment<FragmentSingleGiphyBinding, BaseViewModel>() {
@@ -35,12 +41,20 @@ class SingleGiphyFragment : BaseFragment<FragmentSingleGiphyBinding, BaseViewMod
         val gif =
             requireArguments().getParcelable<GifItemPresentation>(ARG_GIPHY)
                 ?: throw IllegalArgumentException()//todo как улчшить єтот код
-        binding.apply {
-            Glide.with(this@SingleGiphyFragment)
-                .asGif()
-                .centerCrop()
-                .load(gif.imageUrl)
-                .into(ivGif)
+        viewModel.setSelectedGif(gif)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.selectedGif.collect { selectedGif ->
+                    selectedGif?.let {
+                        binding.apply {
+                            Glide.with(this@SingleGiphyFragment)
+                                .asGif()
+                                .load(gif.imageUrl)
+                                .into(ivGif)
+                        }
+                    } ?: R.drawable.pic_placeholder
+                }
+            }
         }
     }
 

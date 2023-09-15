@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/project_margin"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@drawable/pic_placeholder"
         android:contentDescription="@string/gif_images" />
 </FrameLayout>
