@@ -13,11 +13,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.poklad.jobinterviewtestproject.GiphyApp
 import com.poklad.jobinterviewtestproject.R
-import com.poklad.jobinterviewtestproject.data.model.GifItem
 import com.poklad.jobinterviewtestproject.databinding.FragmentGiphyListBinding
 import com.poklad.jobinterviewtestproject.extensions.invisible
-import com.poklad.jobinterviewtestproject.extensions.toast
 import com.poklad.jobinterviewtestproject.extensions.visible
+import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
 import com.poklad.jobinterviewtestproject.presentation.ui.screens.single_giphy.SingleGiphyFragment
@@ -75,7 +74,7 @@ class GiphyListFragment : BaseFragment<FragmentGiphyListBinding, BaseViewModel>(
         }
     }
 
-    private fun renderList(giphyList: List<GifItem>) {
+    private fun renderList(giphyList: List<GifItemPresentation>) {
         giphyAdapter.list = giphyList
     }
 

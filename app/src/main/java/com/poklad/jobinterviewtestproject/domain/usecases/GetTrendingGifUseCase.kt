@@ -1,6 +1,6 @@
 package com.poklad.jobinterviewtestproject.domain.usecases
 
-import com.poklad.jobinterviewtestproject.data.model.GifItem
+import com.poklad.jobinterviewtestproject.domain.model.GifItem
 import com.poklad.jobinterviewtestproject.domain.repository.GiphyRepository
 import javax.inject.Inject
 

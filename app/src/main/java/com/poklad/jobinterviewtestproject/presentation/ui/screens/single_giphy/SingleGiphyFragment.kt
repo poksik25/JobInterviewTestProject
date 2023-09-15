@@ -8,9 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.poklad.jobinterviewtestproject.GiphyApp
-import com.poklad.jobinterviewtestproject.R
-import com.poklad.jobinterviewtestproject.data.model.GifItem
 import com.poklad.jobinterviewtestproject.databinding.FragmentSingleGiphyBinding
+import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -34,12 +33,13 @@ class SingleGiphyFragment : BaseFragment<FragmentSingleGiphyBinding, BaseViewMod
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val gif =
-            requireArguments().getParcelable<GifItem>(ARG_GIPHY) ?: throw IllegalArgumentException()//todo как улчшить єтот код
+            requireArguments().getParcelable<GifItemPresentation>(ARG_GIPHY)
+                ?: throw IllegalArgumentException()//todo как улчшить єтот код
         binding.apply {
             Glide.with(this@SingleGiphyFragment)
                 .asGif()
                 .centerCrop()
-                .load(gif.images.original.url)
+                .load(gif.imageUrl)
                 .into(ivGif)
         }
     }

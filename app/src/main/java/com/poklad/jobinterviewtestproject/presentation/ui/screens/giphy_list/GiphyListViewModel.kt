@@ -1,9 +1,10 @@
 package com.poklad.jobinterviewtestproject.presentation.ui.screens.giphy_list
 
-import com.poklad.jobinterviewtestproject.data.model.GifItem
 import com.poklad.jobinterviewtestproject.domain.usecases.GetTrendingGifUseCase
 import com.poklad.jobinterviewtestproject.extensions.coRunCatching
 import com.poklad.jobinterviewtestproject.extensions.log
+import com.poklad.jobinterviewtestproject.presentation.mapper.GifItemToGifPresentationMapper
+import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
 import com.poklad.jobinterviewtestproject.utils.CoroutineDispatchersProvider
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -15,13 +16,14 @@ import javax.inject.Inject
 
 class GiphyListViewModel @Inject constructor(
     coroutineDispatchersProvider: CoroutineDispatchersProvider,
-    private val getTrendingGifUseCase: GetTrendingGifUseCase
+    private val getTrendingGifUseCase: GetTrendingGifUseCase,
+    private val mapper: GifItemToGifPresentationMapper
 ) : BaseViewModel(coroutineDispatchersProvider) {
     override val coroutineExceptionHandler: CoroutineExceptionHandler
         get() = CoroutineExceptionHandler { _, throwable ->
             log(throwable.message.toString())
         }
-    private val _gifsList = MutableStateFlow<List<GifItem>>(emptyList())
+    private val _gifsList = MutableStateFlow<List<GifItemPresentation>>(emptyList())
     val gifsList = _gifsList.asStateFlow()
 
     init {
@@ -37,7 +39,7 @@ class GiphyListViewModel @Inject constructor(
     private suspend fun fetchGifs(scope: CoroutineScope) {
         scope.coRunCatching {
             withContext(dispatchers.getIO()) {
-                getTrendingGifUseCase.execute(Unit)
+                getTrendingGifUseCase.execute(Unit).map(mapper::map)
             }
         }.onSuccess { productList ->
             _gifsList.value = productList
