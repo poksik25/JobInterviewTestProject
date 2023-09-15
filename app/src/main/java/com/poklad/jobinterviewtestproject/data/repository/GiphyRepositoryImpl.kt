@@ -13,7 +13,7 @@ typealias GifItemMapper = GifItemResponseToGifItemMapper
 @ApplicationScope
 class GiphyRepositoryImpl @Inject constructor(
     private val giphyApi: GiphyApi,
-    private val mapper: GifItemMapper
+    private val mapper: GifItemMapper,
 ) : GiphyRepository {
     override suspend fun getTrendingGifs(): List<GifItem> {
         return giphyApi.getGifsList().data.map(mapper::map)

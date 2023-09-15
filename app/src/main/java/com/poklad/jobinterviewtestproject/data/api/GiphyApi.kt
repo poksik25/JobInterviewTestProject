@@ -8,9 +8,9 @@ import retrofit2.http.Query
 interface GiphyApi {
     @GET(ApiConstants.GET_TRENDING_GIF)
     suspend fun getGifsList(
-        @Query("api_key") apiKey: String = ApiConstants.API_KEY,
-        @Query("limit")  limit: Int = 25,
-        @Query("offset") offset: Int = 0,
-        @Query("rating") rating: String = "g"
+        @Query(ApiConstants.API_KEY_QUERY) apiKey: String = ApiConstants.API_KEY,
+        @Query(ApiConstants.LIMIT) limit: Int = 30,
+        @Query(ApiConstants.OFFSET) offset: Int = 0,
+        @Query(ApiConstants.RATING) rating: String = "g"
     ): GiphyResponse
 }

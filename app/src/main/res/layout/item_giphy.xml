@@ -9,7 +9,7 @@
         android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/gif_images"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@drawable/pic_placeholder" />
 
 </FrameLayout>

@@ -69,6 +69,7 @@ dependencies {
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.paging:paging-common-ktx:3.2.1")
 
     implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation("androidx.core:core-ktx:1.12.0")
