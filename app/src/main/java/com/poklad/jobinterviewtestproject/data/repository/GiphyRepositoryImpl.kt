@@ -6,7 +6,6 @@ import com.poklad.jobinterviewtestproject.di.annotations.ApplicationScope
 import com.poklad.jobinterviewtestproject.domain.model.GifItem
 import com.poklad.jobinterviewtestproject.domain.repository.GiphyRepository
 import javax.inject.Inject
-import javax.inject.Singleton
 
 typealias GifItemMapper = GifItemResponseToGifItemMapper
 

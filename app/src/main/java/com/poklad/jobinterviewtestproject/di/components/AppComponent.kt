@@ -12,7 +12,6 @@ import com.poklad.jobinterviewtestproject.presentation.ui.screens.giphy_list.Gip
 import com.poklad.jobinterviewtestproject.presentation.ui.screens.single_giphy.SingleGiphyFragment
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Singleton
 
 @ApplicationScope
 @Component(

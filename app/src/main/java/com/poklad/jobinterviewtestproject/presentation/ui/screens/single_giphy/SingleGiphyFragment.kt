@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.poklad.jobinterviewtestproject.GiphyApp
@@ -20,7 +19,6 @@ import com.poklad.jobinterviewtestproject.databinding.FragmentSingleGiphyBinding
 import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
