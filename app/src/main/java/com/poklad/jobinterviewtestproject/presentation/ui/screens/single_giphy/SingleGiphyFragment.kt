@@ -4,11 +4,15 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.poklad.jobinterviewtestproject.GiphyApp
 import com.poklad.jobinterviewtestproject.R
@@ -38,9 +42,19 @@ class SingleGiphyFragment : BaseFragment<FragmentSingleGiphyBinding, BaseViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "Gif..."
+        }
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
         val gif =
             requireArguments().getParcelable<GifItemPresentation>(ARG_GIPHY)
-                ?: throw IllegalArgumentException()//todo как улчшить єтот код
+                ?: throw IllegalArgumentException()
         viewModel.setSelectedGif(gif)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

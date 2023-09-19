@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.poklad.jobinterviewtestproject.R
 import com.poklad.jobinterviewtestproject.databinding.ActivityMainBinding
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseActivity

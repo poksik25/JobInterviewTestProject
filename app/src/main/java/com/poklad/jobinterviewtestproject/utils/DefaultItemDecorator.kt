@@ -4,7 +4,6 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-//TODO надо ?
 class GridItemDecorator(
     private val space: Int
 ) : RecyclerView.ItemDecoration() {

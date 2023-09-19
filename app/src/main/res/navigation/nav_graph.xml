@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/giphyListFragment"
         android:name="com.poklad.jobinterviewtestproject.presentation.ui.screens.giphy_list.GiphyListFragment"
-        android:label="GiphyListFragment"
+        android:label="GIfList"
         tools:layout="@layout/fragment_giphy_list">
         <action
             android:id="@+id/action_giphyListFragment_to_singleGiphyFragment"
@@ -21,6 +21,10 @@
     <fragment
         android:id="@+id/singleGiphyFragment"
         android:name="com.poklad.jobinterviewtestproject.presentation.ui.screens.single_giphy.SingleGiphyFragment"
-        android:label="SingleGiphyFragment"
-        tools:layout="@layout/fragment_single_giphy" />
+        android:label="Gif"
+        tools:layout="@layout/fragment_single_giphy">
+        <action
+            android:id="@+id/action_singleGiphyFragment_to_giphyListFragment"
+            app:destination="@id/giphyListFragment" />
+    </fragment>
 </navigation>

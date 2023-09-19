@@ -39,8 +39,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
             navOptions = null
         )
     }
-
-    //TODO it is useless??
     protected fun <T> setUpRecyclerView(
         adapter: BaseAdapter<T>,
         recyclerView: RecyclerView,
@@ -54,7 +52,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
             } else {
                 LinearLayoutManager(requireContext(), orientation, false)
             }
-            val itemDecorator = GridItemDecorator(space = 16)//todo надо это или нет?
+            val itemDecorator = GridItemDecorator(space = 16)
             recyclerView.addItemDecoration(itemDecorator)
             this.adapter = adapter
         }
