@@ -8,11 +8,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.poklad.jobinterviewtestproject.utils.GridItemDecorator
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
 
@@ -38,26 +34,5 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
             args = args,
             navOptions = null
         )
-    }
-    protected fun <T> setUpRecyclerView(
-        adapter: BaseAdapter<T>,
-        recyclerView: RecyclerView,
-        @RecyclerView.Orientation orientation: Int,
-        columns: Int = 1,
-        onItemClick: (T) -> Unit
-    ) {
-        recyclerView.run {
-            layoutManager = if (columns > 1) {
-                GridLayoutManager(requireContext(), columns)
-            } else {
-                LinearLayoutManager(requireContext(), orientation, false)
-            }
-            val itemDecorator = GridItemDecorator(space = 16)
-            recyclerView.addItemDecoration(itemDecorator)
-            this.adapter = adapter
-        }
-        adapter.setOnclickListener { item ->
-            onItemClick(item)
-        }
     }
 }

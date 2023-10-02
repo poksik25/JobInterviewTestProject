@@ -10,11 +10,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.poklad.jobinterviewtestproject.GiphyApp
 import com.poklad.jobinterviewtestproject.R
 import com.poklad.jobinterviewtestproject.databinding.FragmentGiphyListBinding
 import com.poklad.jobinterviewtestproject.extensions.invisible
+import com.poklad.jobinterviewtestproject.extensions.toast
 import com.poklad.jobinterviewtestproject.extensions.visible
 import com.poklad.jobinterviewtestproject.presentation.model.GifItemPresentation
 import com.poklad.jobinterviewtestproject.presentation.ui.base.BaseFragment
@@ -72,6 +73,17 @@ class GiphyListFragment : BaseFragment<FragmentGiphyListBinding, BaseViewModel>(
                 renderList(giphyList)
             }
         }
+        handleError()
+    }
+
+    private fun handleError() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.errorFlow.collect {
+                    requireContext().toast(it?.message.toString())
+                }
+            }
+        }
     }
 
     private fun renderList(giphyList: List<GifItemPresentation>) {
@@ -79,12 +91,11 @@ class GiphyListFragment : BaseFragment<FragmentGiphyListBinding, BaseViewModel>(
     }
 
     private fun initRecyclerView() {
-        setUpRecyclerView(
-            adapter = giphyAdapter,
-            recyclerView = binding.rvGiphyList,
-            orientation = LinearLayoutManager.VERTICAL,
-            columns = 2
-        ) { giphy ->
+        binding.rvGiphyList.apply {
+            adapter = giphyAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+        }
+        giphyAdapter.setOnclickListener { giphy ->
             navigateToFragment(
                 R.id.action_giphyListFragment_to_singleGiphyFragment,
                 bundleOf(SingleGiphyFragment.ARG_GIPHY to giphy)

@@ -43,8 +43,8 @@ class GiphyListViewModel @Inject constructor(
             }
         }.onSuccess { productList ->
             _gifsList.value = productList
-        }.onFailure {
-            //handleError
+        }.onFailure { exception: Throwable ->
+            emitError(exception)
         }
     }
 }

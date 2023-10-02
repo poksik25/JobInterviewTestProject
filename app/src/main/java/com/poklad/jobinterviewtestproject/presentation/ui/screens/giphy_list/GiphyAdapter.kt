@@ -50,6 +50,5 @@ class GiphyAdapter : BaseAdapter<GifItemPresentation>() {
                 }
             }
         }
-
     }
 }
